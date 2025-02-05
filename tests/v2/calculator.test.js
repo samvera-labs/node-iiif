@@ -74,7 +74,7 @@ describe('Calculator', () => {
   it('info with pct:region', () => {
     const expected = {
       region: { left: 512, top: 384, width: 256, height: 192 },
-      size: { fit: 'cover', width: 512, height: 384 },
+      size: { fit: 'fill', width: 512, height: 384 },
       rotation: { flop: false, degree: 45 },
       quality: 'default',
       format: { type: 'jpg', density: 600 },
@@ -89,7 +89,7 @@ describe('Calculator', () => {
   it('info with pixel region', () => {
     const expected = {
       region: { left: 1014, top: 512, width: 10, height: 256 },
-      size: { fit: 'cover', width: 5, height: null },
+      size: { fit: 'fill', width: 5, height: null },
       rotation: { flop: false, degree: 0 },
       quality: 'default',
       format: { type: 'jpg', density: 600 },
@@ -99,5 +99,21 @@ describe('Calculator', () => {
 
     subject.region("1014,512,10,256").size("5,").rotation("0").quality("default").format("jpg", 600);
     assert.deepEqual(subject.info(), expected);
+  });
+
+  it('should return consistent full size for different regions and sizes', async () => {
+    const dims = { width: 3027, height: 4200 };
+    const regions = [
+      { region: '0,4096,1024,104', size: '512,' },
+      { region: '1024,4096,1024,104', size: '512,' },
+      { region: '2560,4096,467,104', size: '467,' }
+    ];
+
+    for (const { region, size } of regions) {
+      const calculator = new Calculator(dims);
+      calculator.region(region).size(size);
+      const fullSize = calculator.info().fullSize;
+      assert.deepEqual(fullSize, { width: 1513, height: 2100 });
+    }
   });
 });

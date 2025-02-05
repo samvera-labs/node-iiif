@@ -110,10 +110,10 @@ class Base {
     let isMax = false;
 
     if (['full', 'max'].includes(v)) {
-      this._setSize(this.dims);
+      this._setSize(this._parsedInfo.region);
       isMax = true;
     } else if (pct) {
-      this._setSize(sizePct(pct.groups.val, this.dims));
+      this._setSize(sizePct(pct.groups.val, this._parsedInfo.region));
     } else {
       this._setSize(sizeWH(v));
     }
@@ -275,7 +275,7 @@ function sizePct (v, dims) {
 }
 
 function sizeWH (v) {
-  const result = { fit: 'cover' };
+  const result = { fit: 'fill' };
   if (typeof v === 'string') {
     if (v[0] === '!') {
       result.fit = 'inside';
