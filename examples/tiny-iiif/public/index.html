@@ -1,45 +1,3 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-</head>
-
-<body>
-    <div class="container pt-5">
-        <div class="row justify-content-center">
-            <div id="osd-container" style="width:1097px; height: 823px; background-color: black;"></div>
-        </div>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.6.2.min.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/openseadragon@v4.1.1/build/openseadragon/openseadragon.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            const viewer = OpenSeadragon(
-                {
-                    id: "osd-container",
-                    prefixUrl: 'https://cdn.jsdelivr.net/npm/openseadragon@v4.1.1/build/openseadragon/images/',
-                    showNavigator: true,
-                    navigatorSizeRatio: 0.1,
-                    minZoomImageRatio: 0.8,
-                    maxZoomPixelRatio: 10,
-                    controlsFadeDelay: 1000,
-                    tileSources: { tileSource: "http://localhost:3000/iiif/3/nypl_1949733-vips-4/info.json" }
-                }
-            );
-        });
-    </script>
-</body>
-<!--
-</html>
 <html>
 <head>
     <title>IIIF Example</title>
@@ -57,17 +15,15 @@
         border: 1px solid #ccc;
         border-radius: 4px;
         box-shadow: 0 0 4px rgba(0,0,0,0.1);
-        width: 1188px;
-        height: 4096px;
+        width: 743px;
+        height: 1036px;
       }
     </style>
   </head>
   <body>
     <div class="osd" id="openseadragon0"></div>
-    <div class="osd" id="openseadragon1"></div>
-    <div class="osd" id="openseadragon2"></div>
     <script type="text/javascript">
-      const images = ['nypl_1949733-vips']; // , 'nypl_1949733-convert', 'nypl_1949733-magick'];
+      const images = ['the_lighthouse_at_honfleur_1983.1.33'];
       for (const i in images) {
         OpenSeadragon({
             id: `openseadragon${i}`,
@@ -94,4 +50,3 @@
     </script>
   </body>
 </html>
--->

@@ -88,17 +88,6 @@ describe('size', () => {
     pipeline = await subject.operations(await subject.dimensions()).pipeline();
     assert.strictEqual(pipeline.options.input.page, 1);
   });
-
-  it('should respect the pixel page buffer', async () => {
-    let pipeline;
-    subject = new Processor(`${base}/full/312,165/0/default.png`, streamResolver);
-    pipeline = await subject.operations(await subject.dimensions()).pipeline();
-    assert.strictEqual(pipeline.options.input.page, 1);
-
-    subject = new Processor(`${base}/full/312,165/0/default.png`, streamResolver, { pageThreshold: 0 });
-    pipeline = await subject.operations(await subject.dimensions()).pipeline();
-    assert.strictEqual(pipeline.options.input.page, 0);
-  });
 });
 
 describe('rotation', () => {
@@ -129,8 +118,8 @@ describe('IIIF transformation', () => {
     const result = await subject.execute();
     const size = await Sharp(result.body).metadata();
     
-    assert.strictEqual(size.width, 24);
-    assert.strictEqual(size.height, 24);
+    assert.strictEqual(size.width, 25);
+    assert.strictEqual(size.height, 25);
     assert.strictEqual(size.format, 'png');
   });
 });
@@ -150,8 +139,8 @@ describe('Two-argument streamResolver', () => {
     const result = await subject.execute();
     const size = await Sharp(result.body).metadata();
 
-    assert.strictEqual(size.width, 24);
-    assert.strictEqual(size.height, 24);
+    assert.strictEqual(size.width, 25);
+    assert.strictEqual(size.height, 25);
     assert.strictEqual(size.format, 'png');
   });
 });

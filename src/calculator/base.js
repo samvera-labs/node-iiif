@@ -206,24 +206,24 @@ function minNum (...args) {
 }
 
 function fullSize (dims, { region, size }) {
-  let scaleFactor;
-  if (size.width && size.height) {
-    scaleFactor = Math.min(
-      size.width / region.width,
-      size.height / region.height
-    );
-  } else if (size.width) {
-    scaleFactor = size.width / region.width;
-  } else if (size.height) {
-    scaleFactor = size.height / region.height;
-  } else {
+  const regionAspect = region.width / region.height;
+
+  if (!size.width && !size.height) {
     throw new IIIFError('Must specify at least one of width or height', { statusCode: 400 });
   }
 
-  return {
+  if (!size.height) size.height = Math.floor(size.width / regionAspect);
+  if (!size.width) size.width = Math.floor(size.height * regionAspect);
+
+  const scaleFactor = size.width / region.width;
+  const result = {
     width: Math.floor(dims.width * scaleFactor),
     height: Math.floor(dims.height * scaleFactor)
   };
+
+  debug('Region %j at size %j yields full size %j, a scale factor of %f', region, size, result, scaleFactor);
+
+  return result;
 }
 
 function regionSquare (dims) {
