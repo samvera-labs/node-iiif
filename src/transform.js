@@ -90,7 +90,7 @@ class Operations {
 
     // Set Region
     const { format, quality, region, rotation: { flop, degree }, size } = this.info();
-    scaleRegion(region, size, scale);
+    scaleRegion(region, scale, this.#pages[page]);
 
     pipeline.extract(region).resize(size);
 
@@ -131,10 +131,15 @@ const setFormat = (pipeline, format) => {
   }
 };
 
-const scaleRegion = (region, size, scale) => {
+const scaleRegion = (region, scale, page) => {
   for (const dim in region) {
     region[dim] = Math.floor(region[dim] * scale);
   }
+
+  region.left = Math.max(region.left, 0);
+  region.top = Math.max(region.top, 0);
+  region.width = Math.min(region.width, page.width);
+  region.height = Math.min(region.height, page.height);
 
   return region;
 };
