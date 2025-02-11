@@ -1,52 +1,16 @@
-<html>
-<head>
-    <title>IIIF Example</title>
-    <script src="/openseadragon/openseadragon.min.js"></script>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        font-size: 14px;
-        margin: 0;
-        padding: 0;
-      }
-      .osd {
-        display: inline-block;
-        margin: 8px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-shadow: 0 0 4px rgba(0,0,0,0.1);
-        width: 743px;
-        height: 1036px;
-      }
-    </style>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="apple-touch-icon" sizes="180x180" href="https://iiif.io/assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://iiif.io/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://iiif.io/assets/favicon-16x16.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>node-iiif examples</title>
+    <script type="module" crossorigin src="/assets/index-tzeWxf9U.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-y9naU7zk.css">
   </head>
   <body>
-    <div class="osd" id="openseadragon0"></div>
-    <script type="text/javascript">
-      const images = ['the_lighthouse_at_honfleur_1983.1.33'];
-      for (const i in images) {
-        OpenSeadragon({
-            id: `openseadragon${i}`,
-            preserveViewport: true,
-            visibilityRatio:    1,
-            minZoomLevel:       1,
-            defaultZoomLevel:   1,
-            sequenceMode:       true,
-            tileSources:   [{
-              "@context": "http://iiif.io/api/image/2/context.json",
-              "@id": `http://localhost:3000/iiif/2/${images[i]}`,
-              "height": 4200,
-              "width": 3027,
-              "profile": [ "http://iiif.io/api/image/2/level2.json" ],
-              "protocol": "http://iiif.io/api/image",
-              "tiles": [{
-                "scaleFactors": [ 1, 2, 4, 8, 16, 32 ],
-                "width": 512
-              }]
-            },
-            ]
-        });
-      }
-    </script>
+    <div id="root"></div>
   </body>
 </html>

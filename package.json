@@ -20,8 +20,7 @@
     "clean": "rm -rf node_modules/ vendor/ coverage/",
     "lint": "eslint src/**/*.js",
     "lint-fix": "eslint --fix src/**/*.js",
-    "test": "node scripts/test.js --env=node",
-    "tiny-iiif": "cd examples/tiny-iiif && node index.js"
+    "test": "node scripts/test.js --env=node"
   },
   "keywords": [
     "iiif",
